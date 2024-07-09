@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { View, Text, StyleSheet, ScrollView, Image } from "react-native";
 import { ProductContext } from "../context/ProductContext";
+import { getImageUrl } from "../services/apiService";
 
 const ProductDetails = () => {
   const { selectedProduct } = useContext(ProductContext);
@@ -8,8 +9,6 @@ const ProductDetails = () => {
   if (!selectedProduct) {
     return null;
   }
-
-  const URl = "https://api.timbu.cloud/images/";
 
   return (
     <ScrollView
@@ -20,7 +19,7 @@ const ProductDetails = () => {
         <View style={styles.imageContainer}>
           <Image
             source={{
-              uri: `${URl}${selectedProduct.photos[0].url}`,
+              uri: getImageUrl(selectedProduct.photos[0].url),
             }}
             style={styles.image}
             resizeMode="cover"

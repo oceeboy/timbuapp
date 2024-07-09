@@ -7,10 +7,9 @@ import {
   Image,
   Animated,
 } from "react-native";
+import { getImageUrl } from "../services/apiService";
 
 const ProductCard = ({ onPress, item }) => {
-  const URl = "https://api.timbu.cloud/images/";
-
   const scaleValue = React.useRef(new Animated.Value(1)).current;
 
   const handlePressIn = () => {
@@ -39,7 +38,7 @@ const ProductCard = ({ onPress, item }) => {
           {item.photos.length > 0 && (
             <Image
               source={{
-                uri: `${URl}${item.photos[0].url}`,
+                uri: getImageUrl(item.photos[0].url),
               }}
               style={styles.image}
               resizeMode="cover"
